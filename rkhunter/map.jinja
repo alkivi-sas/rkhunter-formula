@@ -1,0 +1,26 @@
+{% set rkhunter = salt['grains.filter_by']({
+    'Debian': {
+        'pkg': 'rkhunter',
+        'config': '/etc/rkhunter.conf',
+    },
+}, grain='os', default='Debian', merge=salt['pillar.get']('rkhunter:lookup')) %}
+
+{% set config = salt['grains.filter_by']({
+    'default': {
+        'scriptwhitelist': [
+            '/bin/egrep',
+            '/bin/fgrep',
+            '/bin/which',
+            '/usr/bin/groups',
+            '/usr/bin/ldd',
+            '/usr/sbin/adduser',
+            '/usr/bin/lwp-request',
+            '/usr/bin/unhide.rb',
+        ],
+        'existwhitelist': [
+            '/usr/bin/lwp-request',
+            '/usr/bin/unhide.rb',
+        ],
+
+    },
+}, default='default', merge=salt['pillar.get']('rkhunter:config')) %}

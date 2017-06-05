@@ -1,0 +1,7 @@
+rkhunter:
+  config:
+    mail_on_warning: root@localhost
+    allow_ssh_root_user: 'yes'
+    xinetd_allowed_svc:
+      - /etc/xinetd.d/mysqlchk
+      - /etc/xinetd.d/webcheck
