@@ -361,7 +361,7 @@ ALLOW_SSH_ROOT_USER={{ config.get('allow_ssh_root_user', 'no') }}
 # the Debian Security Team).
 #
 ENABLE_TESTS=ALL
-DISABLE_TESTS=suspscan hidden_procs deleted_files packet_cap_apps apps
+DISABLE_TESTS=suspscan hidden_procs deleted_files packet_cap_apps apps{% if config.get('disable_tests', False) %} {{ config.get('disable_tests')|join(' ') }}{%- endif %}
 
 #
 # The HASH_CMD option can be used to specify the command to use for the file
@@ -622,6 +622,9 @@ SCRIPTWHITELIST={{ script }}
 #
 #ALLOWHIDDENDIR=/etc/.java
 #ALLOWHIDDENDIR=/etc/.etckeeper
+{%- for service in config.get('allowhiddendir', []) %}
+ALLOWHIDDENDIR={{ service }}
+{%- endfor %}
 
 #
 # Allow the specified hidden file to be whitelisted.
@@ -705,6 +708,9 @@ SCRIPTWHITELIST={{ script }}
 #
 #ALLOWDEVFILE=/dev/shm/pulse-shm-*
 #ALLOWDEVFILE=/dev/shm/sem.ADBE_*
+{%- for service in config.get('allowdevfile', []) %}
+ALLOWDEVFILE={{ service }}
+{%- endfor %}
 
 #
 # This option is used to indicate if the Phalanx2 test is to perform a basic
