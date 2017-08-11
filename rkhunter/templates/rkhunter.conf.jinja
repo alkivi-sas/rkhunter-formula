@@ -132,7 +132,7 @@ MIRRORS_MODE={{ config.get('mirrors_mode', 0) }}
 # Also see the MAIL_CMD option.
 #
 #MAIL-ON-WARNING=me@mydomain   root@mydomain
-#{% if config.get('mail_on_warning') %}MAIL-ON-WARNING={{ config.get('mail_on_warning') }}{% endif %}
+{% if config.get('mail_on_warning') %}MAIL-ON-WARNING={{ config.get('mail_on_warning') }}{% endif %}
 
 #
 # This option specifies the mail command to use if MAIL-ON-WARNING is set.
@@ -955,6 +955,12 @@ XINETD_ALLOWED_SVC={{ service }}
 #
 #PORT_WHITELIST=""
 #PORT_PATH_WHITELIST=""
+{%- for v in config.get('port_whitelist', []) %}
+PORT_WHITELIST="{{ v }}"
+{%- endfor %}
+{%- for v in config.get('port_path_whitelist', []) %}
+PORT_PATH_WHITELIST="{{ v }}"
+{%- endfor %}
 
 #
 # The following option can be used to tell rkhunter where the operating system
