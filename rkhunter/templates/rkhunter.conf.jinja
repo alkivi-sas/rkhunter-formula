@@ -1060,6 +1060,9 @@ PORT_PATH_WHITELIST="{{ v }}"
 # The default value is the null string.
 #
 #SHARED_LIB_WHITELIST=/lib/snoopy.so
+{%- for shared_lib in config.get('shared_lib_whitelist', []) %}
+SHARED_LIB_WHITELIST={{ shared_lib }}
+{%- endfor %}
 
 #
 # To force rkhunter to use the supplied script for the 'stat' or 'readlink'
