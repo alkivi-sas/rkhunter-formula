@@ -643,6 +643,9 @@ ALLOWHIDDENDIR={{ service }}
 #ALLOWHIDDENFILE=/usr/share/man/man5/.k5login.5.gz
 #ALLOWHIDDENFILE=/etc/.gitignore
 #ALLOWHIDDENFILE=/etc/.bzrignore
+{%- for service in config.get('allowhiddenfile', []) %}
+ALLOWHIDDENFILE={{ service }}
+{%- endfor %}
 
 
 #
