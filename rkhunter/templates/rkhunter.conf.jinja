@@ -1270,3 +1270,7 @@ INSTALLDIR=/usr
 #EMPTY_LOGFILES=""
 #MISSING_LOGFILES=""
 
+#ALLOWIPCPROC=/usr/sbin/httpd
+{%- for item in config.get('allowipcproc', []) %}
+ALLOWIPCPROC={{ item }}
+{%- endfor %}
