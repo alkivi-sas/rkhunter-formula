@@ -594,6 +594,12 @@ EXISTWHITELIST={{ script }}
 {%- for script in config.get('scriptwhitelist', []) %}
 SCRIPTWHITELIST={{ script }}
 {%- endfor %}
+{%- for script in ['/bin/egrep', '/bin/fgrep', '/bin/which'] %}
+{%- if salt['file.file_exists'](script) %}
+SCRIPTWHITELIST={{ script }}
+{%- endif %}
+{%- endfor %}
+
 
 #
 # Allow the specified file to have the immutable attribute set.
