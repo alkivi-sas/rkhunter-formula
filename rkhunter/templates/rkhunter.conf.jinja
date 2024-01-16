@@ -595,7 +595,7 @@ EXISTWHITELIST={{ script }}
 {%- for script in config.get('scriptwhitelist', []) %}
 SCRIPTWHITELIST={{ script }}
 {%- endfor %}
-{%- for script in ['/bin/egrep', '/bin/fgrep', '/bin/which', '/usr/bin/egrep', '/usr/bin/fgrep'] %}
+{%- for script in ['/bin/egrep', '/bin/fgrep', '/bin/which', '/usr/bin/egrep', '/usr/bin/fgrep', '/usr/bin/which.debianutils'] %}
 {%- if salt['file.file_exists'](script) %}
 SCRIPTWHITELIST={{ script }}
 {%- endif %}
